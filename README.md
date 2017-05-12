@@ -44,25 +44,25 @@ use mackrais\cropimage\ImageCropSection;
 // usage by model
 echo '<label>Cropping section</label>';
 echo  $form->field($model, "image")->widget(mackrais\cropimage\ImageCropSection::className(), [
-                      'options' => [
-                          'id' => 'mr_file_input1',
-                          'class' => 'hidden',
-                      ],
-                      'attribute_x'=>'section1_x',
-                      'attribute_y'=>'section1_y',
-                      'attribute_width'=>'section1_w',
-                      'attribute_height'=>'section1_h',
-                      'attribute_scale'=>'section1_scale',
-                      'attribute_remove'=>'section1_remove',
-                      'class_block'=>'center-block',
-                      'plugin_options' => [
-                                  'width' => 400,
-                                  'height' => 400,
-                                  'id' => 'mr_file_input1',
-                                  'section' => 'section_1'
-                      ],
-                
-                      'template_image'=> isset($model->id) && $model->getImageUrl($model->id,false) ? Html::img($model->getImageUrl($model->id),$model::IMAGE_WIDGET_CONFIGS['section1']) : null
+                         'options' => [
+                             'id' => 'mr_file_input1',
+                             'class' => 'hidden',
+                         ],
+                         'attribute_x'=>'section1_x',
+                         'attribute_y'=>'section1_y',
+                         'attribute_width'=>'section1_w',
+                         'attribute_height'=>'section1_h',
+                         'attribute_scale'=>'section1_scale',
+                         'attribute_remove'=>'section1_remove',
+                         'class_block'=>'center-block',
+                         'plugin_options' => [
+                             'width' => 400,
+                             'height' => 400,
+                             'id_input_file' => 'mr_file_input1',
+                             'section' => 'section_1'
+                         ],
+
+                         'template_image'=> null
           
                   ])->label(false);
 ```
