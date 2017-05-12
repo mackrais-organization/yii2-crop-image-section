@@ -1,7 +1,7 @@
 {
     "name": "mackrais/yii-crop-image-section",
     "description": "Cropping widget yii2 by section.",
-    "keywords": ["yii2", "extension", "widget", "context", "menu", "mouse", "click", "crop", "cropping"],
+    "keywords": ["yii2", "extension", "widget", "context", "menu", "mouse", "click", "crop", "cropping", "zoom", "crop and zoom"],
     "homepage": "https://github.com/mackrais/yii2-crop-image-section",
     "type": "yii2-extension",
     "license": "BSD 3-Clause",
