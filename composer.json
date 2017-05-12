@@ -1,6 +1,6 @@
 {
     "name": "mackrais/yii2-crop-image-section",
-    "description": "Cropping widget yii2 by section.",
+    "description": "Cropping widget yii2 by section. The widget supports transparent background png,gif",
     "keywords": ["yii2", "extension", "widget", "context", "menu", "mouse", "click", "crop", "cropping", "zoom", "crop and zoom"],
     "homepage": "https://github.com/mackrais/yii2-crop-image-section",
     "type": "yii2-extension",
