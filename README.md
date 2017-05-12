@@ -1,8 +1,7 @@
-# mr-crop-image-section
+# yii2-crop-image-section
 
 ![SectionCrop Screenshot](https://archive.org/download/ScreenshotFrom20151130100220/Screenshot%20from%202015-11-30%2010:02:20.png)
 
- composer require mackrais/mr-crop-image-section:"dev-master"
 Installation
 ------------
 
@@ -11,14 +10,20 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist mackrais/mr-crop-image-section "dev-master"
+php composer.phar require --prefer-dist mackrais/yii2-crop-image-section "dev-master"
 ```
 
+or 
+
+```
+"mackrais/yii2-crop-image-section": "dev-master"
+```
 or add
 
 ```
-"mackrais/mr-crop-image-section": "dev-master"
+ composer require mackrais/yii2-crop-image-section:"dev-master"
 ```
+
 
 to the require section of your `composer.json` file.
 
