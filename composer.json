@@ -5,6 +5,7 @@
     "homepage": "https://github.com/mackrais/yii2-crop-image-section",
     "type": "yii2-extension",
     "license": "BSD 3-Clause",
+    "minimum-stability": "dev",
     "repositories": [
         {
            "type":"git",
