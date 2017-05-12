@@ -18,6 +18,7 @@ function mr_section_init(default_options) {
 
     var font_size = 15 * (default_options.width / default_options.height) + 'px';
     var font_size_icon = 40 * (default_options.width / default_options.height) + 'px';
+    var $removeBtn = $('<span class="glyphicon  glyphicon-remove mr-remove " ></span>');
 
     $(default_options.section).find('h2').css("font-size", font_size);
     $(default_options.section).find('.fa-photo').css("font-size", font_size_icon);
@@ -38,6 +39,33 @@ function mr_section_init(default_options) {
         if ($(this).find('img').length == 0)
             $(this).siblings('input:file').click();
     });
+
+        $(document)
+            .off('click.mrCropRemoveImg')
+            .on('click.mrCropRemoveImg',default_options.section+' .mr-remove',function () {
+            var $block;
+            var $templateClear;
+            if($(this).parents('.mr-section-base:eq(0)').length){
+                $block = $(this).parents('.mr-section-base:eq(0)');
+            }
+            if($block && $block.find('.mr-tmp-clear-block').length){
+                $templateClear = $block.find('.mr-tmp-clear-block').clone();
+                $templateClear.removeClass('hidden');
+            }
+            if($(default_options.section).length){
+                $(default_options.section).empty().append($templateClear);
+                if($templateClear.length){
+                    $templateClear.find('h2').css("font-size", font_size);
+                    $templateClear.find('.fa-photo').css("font-size", font_size_icon);
+                }
+                $(default_options.id_input_file).replaceWith( $(default_options.id_input_file).clone( true ) );
+                if($block.find('.mr-remove-input').length){
+                    $block.find('.mr-remove-input').val(1);
+                }
+            }
+        });
+
+
 
     /**
      * Dynamic preview image and Initialization widget croping
@@ -107,14 +135,14 @@ function mr_section_init(default_options) {
             });
 
             // Centered image after load
-            var data = $(this).guillotine('getData');
-            $(this).trigger('guillotinechange',data);
+            var datas = $(this).guillotine('getData');
+            $(this).trigger('guillotinechange',datas);
             $(this).guillotine('fit');
         });
 
         // Make sure the 'load' event is triggered at least once (for cached images)
         if ($(this).prop('complete')) $(this).trigger('load')
-    }
+    };
 
     /**
      * Dynamic generate preview image
@@ -137,11 +165,21 @@ function mr_section_init(default_options) {
             }
 
             reader.onload = function (e) {
+                var blob = b64toBlob(e.target.result,type);
+                var blobUrl = URL.createObjectURL(blob);
                 $remove.addClass('mr-preview-remove-img-section');
-                $img.addClass('mr-preview-img-section').attr('src', e.target.result);
+                $img.addClass('mr-preview-img-section').attr('src', blobUrl);
                 $section.empty();
                 $section.append($img);
 
+                if($section.length){
+                    $section.append($removeBtn);
+                }
+                if($section.parents('.mr-section-base:eq(0)').length){
+                    if($section.parents('.mr-section-base:eq(0)').find('.mr-remove-input').length){
+                        $section.parents('.mr-section-base:eq(0)').find('.mr-remove-input').val(0);
+                    }
+                }
                 // Initialization crop widget
                 $img.init_crop({
                     nav_block: $section.siblings('.mr-control-panel'),
@@ -152,8 +190,47 @@ function mr_section_init(default_options) {
 
                 $section.siblings('.mr-data-inputs').find('.mr-origin-height').val($img.height());
                 $section.siblings('.mr-data-inputs').find('.mr-origin-width').val($img.width());
-            }
+            };
             reader.readAsDataURL(input.files[0]);
         }
+    }
+
+    /**
+     *
+     * @param b64Data
+     * @param contentType
+     * @returns {*}
+     */
+    function getB64Data(b64Data,contentType) {
+        b64Data = b64Data || '';
+        b64Data =  b64Data.replace("data:", "");
+        b64Data =  b64Data.replace(";base64,", "");
+        b64Data =  b64Data.replace(contentType, "");
+        return b64Data;
+    }
+
+    /**
+     *
+     * @param b64Data
+     * @param contentType
+     * @param sliceSize
+     * @returns {*}
+     */
+    function b64toBlob(b64Data, contentType, sliceSize) {
+        contentType = contentType || '';
+        sliceSize = sliceSize || 512;
+        b64Data = getB64Data(b64Data,contentType);
+        var byteCharacters = atob(b64Data);
+        var byteArrays = [];
+        for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+            var slice = byteCharacters.slice(offset, offset + sliceSize);
+            var byteNumbers = new Array(slice.length);
+            for (var i = 0; i < slice.length; i++) {
+                byteNumbers[i] = slice.charCodeAt(i);
+            }
+            var byteArray = new Uint8Array(byteNumbers);
+            byteArrays.push(byteArray);
+        }
+        return new Blob(byteArrays, {type: contentType});
     }
 }

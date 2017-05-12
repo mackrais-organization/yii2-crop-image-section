@@ -1,32 +1,29 @@
 <?php
 /**
- * Created by MackRais on 06.11.15.
- * @author Oleh Boiko
- * @site http://mackrais.zz.mu
+ * Created by PhpStorm.
+ * @user: MackRias
+ * @site: http://mackrais.com
+ * @email: mackraiscms@gmail.com
  */
 
-namespace MackRais\MrCropImageSection;
+namespace mackrais\cropimage;
 
 use yii\web\AssetBundle;
-use Yii;
 
 
 class MrSectionWidgetAsset extends AssetBundle{
 
-    public $sourcePath = '@MackRais/MrCropImageSection';
-
-    public $css = [
-        'css/MrSection.css',
-        'css/jquery.guillotine.css'
-    ];
+    public $sourcePath = '@mackrais/cropimage/assets';
 
     public $depends = [
         'yii\bootstrap\BootstrapAsset',
     ];
 
-
     public function init() {
+        $this->css[] = YII_DEBUG ? 'css/MrSection.css' : 'css/MrSection.min.css';
+        $this->css[] = YII_DEBUG ? 'css/jquery.guillotine.css' : 'css/jquery.guillotine.min.css';
+
         $this->js[] = YII_DEBUG ? 'js/jquery.guillotine.js' : 'js/jquery.guillotine.min.js';
-        $this->js[] = YII_DEBUG ? 'js/mr.section.min.js' : 'js/mr.section.min.js';
+        $this->js[] = YII_DEBUG ? 'js/mr.section.js' : 'js/mr.section.min.js';
     }
 }

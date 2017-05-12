@@ -1,15 +1,15 @@
 {
-    "name": "mackrais/mr-crop-image-section",
+    "name": "mackrais/yii-crop-image-section",
     "description": "Cropping widget yii2 by section.",
     "keywords": ["yii2", "extension", "widget", "context", "menu", "mouse", "click", "crop", "cropping"],
-    "homepage": "https://github.com/mackrais/mr-crop-image-section",
+    "homepage": "https://github.com/mackrais/yii2-crop-image-section",
     "type": "yii2-extension",
     "license": "BSD 3-Clause",
     "version": "dev-master",
     "repositories": [
         {
            "type":"git",
-            "url": "https://github.com/mackrais/mr-crop-image-section.git"
+            "url": "https://github.com/mackrais/yii2-crop-image-section.git"
         }
     ],
     "minimum-stability": "dev",
@@ -17,7 +17,7 @@
         {
             "name": "Oleh Boiko",
             "email": "mackraiscms@gmail.com",
-            "homepage": "http://mackrais.zz.mu/"
+            "homepage": "http://mackrais.com"
         }
     ],
      "require": {
@@ -26,7 +26,7 @@
     },
     "autoload": {
         "psr-4": {
-            "MackRais\\MrCropImageSection\\": ""
+            "mackrais\\cropimage\\": ""
         }
     }
 }

@@ -1,16 +1,21 @@
 <?php
 /**
- * Created by MackRais on 06.11.15.
- * @author Oleh Boiko
- * @site http://mackrais.zz.mu
+ * Created by PhpStorm.
+ * @user: MackRias
+ * @site: http://mackrais.com
+ * @email: mackraiscms@gmail.com
  */
-namespace MackRais\MrCropImageSection;
-use Yii;
-use yii\base\Widget;
+
+namespace mackrais\cropimage;
+
 use yii\base\Model;
-use MackRais\MrCropImageSection\MrSectionWidgetAsset;
+use yii\bootstrap\Widget;
+use yii\web\AssetManager;
 
-
+/**
+ * Class ImageCropSection
+ * @package mackrais\cropimage
+ */
 class ImageCropSection extends Widget
 {
 
@@ -81,6 +86,15 @@ class ImageCropSection extends Widget
     ];
 
     /**
+     * @var string the model attribute & options input remove
+     */
+    public $attribute_remove = 'remove';
+    public $options_remove = [
+        'class'=>'hidden',
+        'value'=>'0'
+    ];
+
+    /**
      * @var string the model attribute & options input origin_height
      */
     public $attribute_angle = 'angle';
@@ -100,19 +114,25 @@ class ImageCropSection extends Widget
     public $class_block = '';
     public $template_image = '';
 
-    /**
-     * @inheritdoc
-     */
-    public function init()
-    {
-        $view = $this->getView();
-        MrSectionWidgetAsset::register($view);
+    public function init(){
+        $assetManager = new AssetManager();
+        $assetManager->forceCopy = YII_ENV_DEV ? true : false;
+        $assetManager->linkAssets = true;
+        $assetManager->publish('@app/widgets/MrCropImageSection/assets');
+        parent::init();
+
     }
 
+    /**
+     * @return null|string
+     */
     public function run() {
-
-
         if ($this->hasModel()) {
+            if(isset($this->options_remove['class'])){
+                $this->options_remove['class'] .= ' mr-remove-input';
+            }else{
+                $this->options_remove['class'] = 'mr-remove-input';
+            }
             return $this->render('section', [
                 'model' => $this->model,
                 'plugin_options' => $this->plugin_options,
@@ -134,10 +154,13 @@ class ImageCropSection extends Widget
                 'options_scale'=> $this->options_scale,
                 'attribute_angle'=>$this->attribute_angle,
                 'options_angle'=> $this->options_angle,
+                'attribute_remove'=>$this->attribute_remove,
+                'options_remove'=> $this->options_remove,
                 'class_block' => $this->class_block,
                 'template_image' =>  $this->template_image,
             ]);
         }
+        return null;
     }
 
     /**
