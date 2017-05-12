@@ -43,7 +43,7 @@ use mackrais\cropimage\ImageCropSection;
 
 // usage by model
 echo '<label>Cropping section</label>';
-echo echo $form->field($model, "image")->widget(mackrais\cropimage\ImageCropSection::className(), [
+echo  $form->field($model, "image")->widget(mackrais\cropimage\ImageCropSection::className(), [
                       'options' => [
                           'id' => 'mr_file_input1',
                           'class' => 'hidden',
