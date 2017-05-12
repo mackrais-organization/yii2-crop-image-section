@@ -5,14 +5,12 @@
     "homepage": "https://github.com/mackrais/yii2-crop-image-section",
     "type": "yii2-extension",
     "license": "BSD 3-Clause",
-    "version": "dev-master",
     "repositories": [
         {
            "type":"git",
             "url": "https://github.com/mackrais/yii2-crop-image-section.git"
         }
     ],
-    "minimum-stability": "dev",
     "authors": [
         {
             "name": "Oleh Boiko",
@@ -27,6 +25,11 @@
     "autoload": {
         "psr-4": {
             "mackrais\\cropimage\\": ""
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.0"
         }
     }
 }
