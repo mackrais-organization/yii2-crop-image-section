@@ -7,6 +7,8 @@
 [![Monthly Downloads](https://poser.pugx.org/mackrais/yii2-crop-image-section/d/monthly)](https://packagist.org/packages/mackrais/yii2-crop-image-section)
 [![Daily Downloads](https://poser.pugx.org/mackrais/yii2-crop-image-section/d/daily)](https://packagist.org/packages/mackrais/yii2-crop-image-section)
 
+This widget is based on the [ Guillotine jQuery plugin](http://guillotine.js.org/) plugin.
+
 ![SectionCrop Screenshot](https://archive.org/download/ScreenshotFrom20151130100220/Screenshot%20from%202015-11-30%2010:02:20.png)
 
 Installation
