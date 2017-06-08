@@ -208,10 +208,10 @@ class UnitCategories extends ActiveRecord
     {
         $model = self::findOne((int)$id);
         if (!empty($model) && !empty($model->image)) {
-            $path = alias('@unitCategoryImgPath');
+            $path = Yii::getAlias('@unitCategoryImgPath');
             $file = $path . $model->image;
             if (is_readable($file) && is_file($file)) {
-                return Url::to(alias('@unitCategoryImgUrl') . $model->image, true);
+                return Url::to(Yii::getAlias('@unitCategoryImgUrl') . $model->image, true);
             }
         }
         return $withDefault ? Url::to(self::DEFAULT_IMG, true) : null;
@@ -228,7 +228,7 @@ class UnitCategories extends ActiveRecord
         if (isset($data['section1_remove']) && !empty($data['section1_remove'])) {
             $this->deleteImage();
         }
-        $path = alias('@unitCategoryImgPath');
+        $path = Yii::getAlias('@unitCategoryImgPath');
         if (isset($fileInstance) && !empty($fileInstance))
             if ($this->validate(['image'])) {
                 $this->deleteImage();
@@ -291,7 +291,7 @@ class UnitCategories extends ActiveRecord
      */
     private function deleteImageBeforeSave()
     {
-        $path = alias('@unitCategoryImgPath');
+        $path = Yii::getAlias('@unitCategoryImgPath');
         if ($this->image !== $this->oldAttributes['image'] && !empty($this->oldAttributes['image'])) {
             $file = $path . $this->oldAttributes['image'];
             if (is_readable($file) && is_file($file)) {
@@ -307,7 +307,7 @@ class UnitCategories extends ActiveRecord
      */
     private function deleteImage()
     {
-        $path = alias('@unitCategoryImgPath');
+        $path = Yii::getAlias('@unitCategoryImgPath');
         $file = $path . $this->image;
         if (!empty($this->image) && is_readable($file) && is_file($file)) {
             return unlink($file);
