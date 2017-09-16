@@ -122,7 +122,7 @@ class Image
             }
             $x = round($params['x'] / $params['scale']) + ceil($params['scale']);
             $y = round($params['y'] / $params['scale']) + ceil($params['scale']);
-            $height = round($params['width'] / $params['scale']) - ceil($params['scale']);
+            $height = round($params['height'] / $params['scale']) - ceil($params['scale']);
             $width = round($params['width'] / $params['scale']) - ceil($params['scale']);
             imagecopyresampled(
                 $thumbnailGDImage,
